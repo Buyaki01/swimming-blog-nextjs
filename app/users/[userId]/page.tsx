@@ -12,7 +12,9 @@ export default async function UserPage({ params: { userId } }: Params) {// This 
   const userData: Promise<User> = getUser(userId)
   const userPostsData: Promise<Post[]> = getUserPosts(userId)
   
-  const [user, userPosts] = await Promise.all([userData, userPostsData])
+  // const [user, userPosts] = await Promise.all([userData, userPostsData])
+
+  const user = await userData
 
   return (
     <>
@@ -20,7 +22,7 @@ export default async function UserPage({ params: { userId } }: Params) {// This 
       <br />
       
       <Suspense fallback={<h2>Loading...</h2>}>
-        <UserPosts posts={userPosts} />
+        <UserPosts promise={userPostsData} />
       </Suspense>
     </>
   )
