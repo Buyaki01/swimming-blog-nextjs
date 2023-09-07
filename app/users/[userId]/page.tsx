@@ -1,6 +1,7 @@
 import getUser from "@/lib/getUser"
 import getUserPosts from "@/lib/getUserPosts"
 import { Suspense } from "react"
+import UserPosts from "./components/UserPosts"
 
 type Params = {
   params: {
