@@ -1,5 +1,5 @@
 export default async function getUserPosts(userId: string) {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`, { cache: 'force-cache' })
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`, { cache: 'no-store' }) //explicitly telling the browser not to cache the response locally, ensuring that you always get a fresh response from the server, regardless of any previous requests
 
   if (!res.ok) throw new Error('failed to fetch user')
 
