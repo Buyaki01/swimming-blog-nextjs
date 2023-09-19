@@ -1,7 +1,7 @@
-# blog-app-nextjs
+# swimming-blog-nextjs
 
 ## Overview
-This is a blog app.
+This is a swimming blog.
 
 ## Technologies Used
 - **NextJs**
@@ -12,12 +12,12 @@ To get started with this app, follow these steps:
 
 1. Clone this repository: 
     ```bash 
-    git clone git@github.com:Buyaki01/blog-app-nextjs.git
+    git clone git@github.com:Buyaki01/swimming-blog-nextjs.git
     ```
 
 2. Open the repository: 
     ```bash 
-    cd blog-app-nextjs
+    cd swimming-blog-nextjs
     ```
 
 3. Install dependencies using: 
@@ -40,7 +40,7 @@ To get started with this app, follow these steps:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/Buyaki01/blog-app-nextjs/issues)
+Feel free to check the [issues page](https://github.com/Buyaki01/swimming-blog-nextjs/issues)
 
 ## Show your support
 
