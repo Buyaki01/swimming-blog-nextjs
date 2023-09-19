@@ -4,8 +4,8 @@ import Navbar from './components/Navbar'
 import MyProfilePic from './components/MyProfilePic'
 
 export const metadata: Metadata = {
-  title: "Dave's Blog",
-  description: 'Created by Dave Gray',
+  title: "Swimming Blog",
+  description: 'Created by Ritta Sweta',
 }
 
 export default function RootLayout({

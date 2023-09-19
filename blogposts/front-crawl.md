@@ -16,6 +16,3 @@ It is also known as free style.
 - Breathe inwards quickly as the arm recovers over the water surface, and the face rolls back into the water as the hand enters
 - Each part of the stroke should complement each other whilst maintaining a balanced and streamlined body position
 - All actions must be smooth and continuous
-
-### Acknowledgments
-- Inspiration: [Swim Teach](https://www.swim-teach.com)
