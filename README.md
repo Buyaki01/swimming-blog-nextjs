@@ -48,3 +48,4 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 - Inspiration: [Dave Gray](https://www.youtube.com/@DaveGrayTeachesCode)
+- Inspiration: [Swim Teach](https://www.swim-teach.com)
