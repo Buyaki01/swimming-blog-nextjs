@@ -37,21 +37,21 @@ export function getSortedPostsData() {
 
 export async function getPostData(id: string) {
   const fullPath = path.join(postsDirectory, `${id}.md`)
-  const fileContents = fs.readFileSync(fullPath, 'utf-8')
-  
+  const fileContents = fs.readFileSync(fullPath, 'utf8')
+
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents)
 
-  const processedContent = await remark() // remark is a library or tool often used for working with Markdown content in JavaScript. This part initializes remark to start processing content.
-    .use(html) // .use() is a method used with remark to add functionality or plugins. In this case, it's adding a plugin called html. This means that we want to convert the Markdown content into HTML
-    .process(matterResult.content);
+  const processedContent = await remark()
+    .use(html)
+    .process(matterResult.content)
 
   const contentHtml = processedContent.toString()
 
   const blogPostWithHTML: BlogPost & { contentHtml: string } = {
     id,
     title: matterResult.data.title,
-    date: matterResult.data.date, 
+    date: matterResult.data.date,
     contentHtml,
   }
 
