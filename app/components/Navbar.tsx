@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { FaYoutube, FaTwitter, FaGithub, FaLaptop } from "react-icons/fa"
+import Search from "./Search"
 
 export default function Navbar() {
   return (
@@ -27,6 +28,10 @@ export default function Navbar() {
           <Link className="text-white/90 hover:text-white" href="#">
             <FaTwitter />
           </Link>
+        </div>
+
+        <div>
+          <Search />
         </div>
       </div>
     </nav>

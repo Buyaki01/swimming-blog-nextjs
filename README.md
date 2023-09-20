@@ -5,6 +5,7 @@ This is a swimming blog.
 
 ## Technologies Used
 - **NextJs**
+- **React**
 - **Tailwind**
 
 ### Getting Started
