@@ -1,3 +1,5 @@
+import { compileMDX } from 'next-mdx-remote/rsc'
+
 type Filetree = {
   "tree": [
     {
