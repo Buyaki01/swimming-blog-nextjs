@@ -1,6 +1,7 @@
 ---
 title: 'Breaststroke'
 date: '2023-09-19'
+tags: ['swimming', 'breaststroke']
 ---
 
 - The stroke begins with the body in a stretched out, horizontal position with the face in the water

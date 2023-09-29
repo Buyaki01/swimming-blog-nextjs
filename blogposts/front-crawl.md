@@ -1,6 +1,7 @@
 ---
 title: 'Front Crawl'
 date: '2023-09-19'
+tags: ['swmming', 'front crawl']
 ---
 
 It is also known as free style.

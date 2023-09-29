@@ -1,6 +1,7 @@
 ---
 title: 'Back Stroke'
 date: '2023-09-19'
+tags: ['swimming', 'back stroke']
 ---
 
 - The body must be as horizontal and streamlined as possible, with the head inline, eyes looking upwards and remaining steady throughout

@@ -1,6 +1,7 @@
 ---
 title: 'Swimming Pools In Nairobi, Kenya'
 date: '2023-09-19'
+tags: ['swimming', 'swimming pools']
 ---
 
 1. Kasarani Aquatic Stadium
