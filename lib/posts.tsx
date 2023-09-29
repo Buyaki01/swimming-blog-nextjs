@@ -25,6 +25,9 @@ export async function getPostByName(fileName: string): Promise<BlogPost | undefi
 
   const { frontmatter, content } = await compileMDX<{ title: string, date: string, tags: string[] }>({
     source: rawMDX,
+    options: {
+      parseFrontmatter: true,
+    }
   })
 
   const id = fileName.replace(/\.mdx$/, '')
