@@ -1,5 +1,6 @@
 import { compileMDX } from 'next-mdx-remote/rsc'
 import Video from '@/app/components/Video'
+import CustomImage from '@/app/components/CustomImage'
 
 type Filetree = {
   "tree": [
@@ -27,7 +28,8 @@ export async function getPostByName(fileName: string): Promise<BlogPost | undefi
   const { frontmatter, content } = await compileMDX<{ title: string, date: string, tags: string[] }>({
     source: rawMDX,
     components: {
-      Video
+      Video,
+      CustomImage,
     },
     options: {
       parseFrontmatter: true,
