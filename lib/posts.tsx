@@ -1,7 +1,5 @@
 import { compileMDX } from 'next-mdx-remote/rsc'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypeHighlight from 'rehype-highlight'
-import rehypeSlug from 'rehype-slug'
+import Video from '@/app/components/Video'
 
 type Filetree = {
   "tree": [
@@ -28,6 +26,9 @@ export async function getPostByName(fileName: string): Promise<BlogPost | undefi
 
   const { frontmatter, content } = await compileMDX<{ title: string, date: string, tags: string[] }>({
     source: rawMDX,
+    components: {
+      Video
+    },
     options: {
       parseFrontmatter: true,
     }
