@@ -1,60 +1,72 @@
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
-import { remark } from 'remark'
-import html from 'remark-html'
+import { compileMDX } from 'next-mdx-remote/rsc'
+import Video from '@/app/components/Video'
+import CustomImage from '@/app/components/CustomImage'
 
-const postsDirectory = path.join(process.cwd(), 'blogposts') //cwd: current working directory
-
-export function getSortedPostsData() {
-  // readdirSync(postsDirectory):  It reads the contents of a directory and returns an array of file and directory names found in that directory.
-  // It does this synchronously, meaning the code will pause and wait until the reading operation is complete before moving on to the next line.
-  const fileNames = fs.readdirSync(postsDirectory) //"fs," which stands for "file system. It provides functions for interacting with files and directories on your computer.
-  const allPostsData = fileNames.map((fileName) => {
-    // Remove ".md" from file name to get id
-    const id = fileName.replace(/\.md$/, '') // The / is used to indicate the start and end of the pattern. The backslash \ is an escape character, It is used to indicate that the following character (.) should be treated as a literal period (dot). In regular expressions, the dot . is a special character that matches any single character. The dollar sign $ has a special meaning in regular expressions. It represents the end of a line or string.
-
-    // Read markdown file as string
-    const fullPath = path.join(postsDirectory, fileName)
-    const fileContents = fs.readFileSync(fullPath, 'utf-8') //utf-8: This is an optional argument that specifies the encoding of the file being read. In this case, it's set to 'utf-8', which is a common encoding for text files. This means that the file's contents will be read as text and stored as a string in the fileContents variable.
-
-    // Use gray-matter to parse the post metadata section
-    const matterResult = matter(fileContents)
-
-    const blogPost: BlogPost = {
-      id,
-      title: matterResult.data.title,
-      date: matterResult.data.date,
+type Filetree = {
+  "tree": [
+    {
+      "path": string,
     }
-
-    // Combine the data with the id
-    return blogPost
-  })
-
-  // Sort posts by date
-  return allPostsData.sort((a,b) => a.date < b.date ? 1 : -1)
+  ]
 }
 
-export async function getPostData(id: string) {
-  const fullPath = path.join(postsDirectory, `${id}.md`)
-  const fileContents = fs.readFileSync(fullPath, 'utf8')
+export async function getPostByName(fileName: string): Promise<BlogPost | undefined> {
+  const res = await fetch(`https://raw.githubusercontent.com/Buyaki01/mdx-swimming-content-files-nextjs/main/${fileName}`, {
+    headers: {
+      Accept: 'application/vnd.github+json',
+      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      'X-GitHub-Api-Version': '2022-11-28',
+    }
+  })
 
-  // Use gray-matter to parse the post metadata section
-  const matterResult = matter(fileContents)
+  if (!res.ok) return undefined
 
-  const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content)
+  const rawMDX = await res.text()
 
-  const contentHtml = processedContent.toString()
+  if (rawMDX === '404: Not Found') return undefined
 
-  const blogPostWithHTML: BlogPost & { contentHtml: string } = {
-    id,
-    title: matterResult.data.title,
-    date: matterResult.data.date,
-    contentHtml,
+  const { frontmatter, content } = await compileMDX<{ title: string, date: string, tags: string[] }>({
+    source: rawMDX,
+    components: {
+      Video,
+      CustomImage,
+    },
+    options: {
+      parseFrontmatter: true,
+    }
+  })
+
+  const id = fileName.replace(/\.mdx$/, '')
+
+  const blogPostObj: BlogPost = { meta: { id, title: frontmatter.title, date: frontmatter.date, tags: frontmatter.tags }, content }
+
+  return blogPostObj
+}
+
+export async function getPostsMeta(): Promise<Meta[] | undefined> {
+  const res = await fetch('https://api.github.com/repos/Buyaki01/mdx-swimming-content-files-nextjs/git/trees/main?recursive=1', {
+    headers: {
+      Accept: 'application/vnd.github+json',
+      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      'X-Github-Api-Version': '2022-11-28',
+    }
+  })
+
+  if (!res.ok) return undefined
+
+  const repoFiletree: Filetree = await res.json()
+
+  const filesArray = repoFiletree.tree.map(obj => obj.path).filter(path =>  path.endsWith('.mdx'))
+
+  const posts: Meta[] = []
+
+  for (const file of filesArray) {
+    const post = await getPostByName(file)
+    if (post) {
+      const { meta } = post
+      posts.push(meta)
+    }
   }
 
-  // Combine the data with the id
-  return blogPostWithHTML
+  return posts.sort((a,b) => a.date < b.date ? 1 : -1)
 }
