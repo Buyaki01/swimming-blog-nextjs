@@ -30,15 +30,6 @@ export async function getPostByName(fileName: string): Promise<BlogPost | undefi
     source: rawMDX,
     options: {
       parseFrontmatter: true,
-      mdxOptions: {
-        rehypePlugins: [
-          rehypeHighlight,
-          rehypeSlug,
-          [rehypeAutolinkHeadings, {
-            behavior: 'wrap'
-          }],
-        ],
-      },
     }
   })
 
