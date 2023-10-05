@@ -5,7 +5,9 @@ This is a swimming blog.
 
 ## Technologies Used
 - **NextJs**
-- **Tailwind**
+- **React**
+- **TypeScript**
+- **Tailwind CSS**
 
 ### Getting Started
 To get started with this app, follow these steps:
