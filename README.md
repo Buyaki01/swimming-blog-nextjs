@@ -32,6 +32,19 @@ To get started with this app, follow these steps:
     npm run dev
     ``` 
 
+### Build and Run in Production
+To build the app for production and start the production server, follow these steps:
+
+1. Build the app using: 
+    ```bash 
+    npm run build
+    ```
+
+2. Start the production server using: 
+    ```bash 
+    npm start
+    ```
+
 ## Author
 👤 **Ritta Sweta**
 
