@@ -48,7 +48,7 @@ To build the app for production and start the production server, follow these st
 ## Author
 👤 **Ritta Sweta**
 
-- Linkedin: [@ritta-sweta](https://www.linkedin.com/in/ritta-sweta/)
+- Linkedin: [@ritta-sweta](https://www.linkedin.com/in/ritta-sweta)
 - Github: [@Buyaki01](https://github.com/Buyaki01)
 
 ## 🤝 Contributing
